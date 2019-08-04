@@ -98,7 +98,12 @@ class BookController extends Controller
      */
     public function destroy($book){        
 
-        //return $this->successResponse($book);
+        // se verifica si el libro existe antes de hacer el delete
+        $book = Book::findOrFail($book);
+
+        $book->delete();
+
+        return $this->successResponse($book);
 
     }
 }
