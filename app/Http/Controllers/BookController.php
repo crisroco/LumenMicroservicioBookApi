@@ -56,8 +56,8 @@ class BookController extends Controller
      * @return Illuminate\Http\Response
      */
     public function show($book){
-        // $book = Author::findOrFail($book);
-        // return $this->successResponse($book);
+        $book = Book::findOrFail($book);
+        return $this->successResponse($book);
     }
 
     /**
