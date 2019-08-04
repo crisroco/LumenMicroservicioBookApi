@@ -1,4 +1,4 @@
-# Este proyecto se complemeta con los sigueinte repositrios
+# Este proyecto se complementa con los sigueinte repositorios
 
 [Authors microservice](https://github.com/crisroco/LumenMicroservicioAuthorApi).
 
