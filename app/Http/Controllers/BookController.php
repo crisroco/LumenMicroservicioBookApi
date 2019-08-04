@@ -66,7 +66,28 @@ class BookController extends Controller
      */
     public function update(Request $request, $book){
         
-        //return $this->successResponse($book);
+        $rules =  [
+            'title' => 'max:255',
+            'description' => 'max:255',
+            'price' => 'min:1',
+            'author_id' => 'min:1',
+        ];
+
+        $this->validate($request, $rules);
+
+        // se verifica si el libro existe antes de hacer el update
+        $book = Book::findOrFail($book);
+
+        $book->fill($request->all());
+
+        //verifica si cambio algo en los datos del libro
+        if ($book->isClean()) {
+            return $this->errorResponse('Al menos un valor debe ser cambiado', Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $book->save();
+
+        return $this->successResponse($book);
 
 
     }
